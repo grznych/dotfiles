@@ -1,0 +1,5 @@
+[Unit]
+Description=Random wallpaper with feh
+
+[Service]
+ExecStart=%h/.fehbg

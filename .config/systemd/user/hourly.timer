@@ -1,0 +1,9 @@
+[Unit]
+Description=Hourly signal
+
+[Timer]
+OnCalendar=hourly
+AccuracySec=500ms
+
+[Install]
+WantedBy=timers.target
