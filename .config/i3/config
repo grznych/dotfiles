@@ -1,0 +1,185 @@
+# i3 config file (v4)
+
+#exec ~/Downloads/Sims_4_Linux/start.sh; systemctl poweroff
+
+font pango:Ubuntu Mono 12
+#with dpi 12—14
+#without dpi 15—17
+#font pango:Fira Code Light 10
+
+set $mod	Mod4
+set $alt	Mod1
+set $up		Up
+set $down	Down
+set $left	Left
+set $right	Right
+
+workspace_layout				tabbed
+workspace_auto_back_and_forth	yes
+title_align						center
+hide_edge_borders				both
+default_border					pixel 2
+default_floating_border			pixel 2
+#for_window [class=".*"]			border pixel 1
+floating_modifier				$mod
+floating_maximum_size			1024 x 600
+
+# backlight and volume
+bindsym XF86MonBrightnessUp		exec --no-startup-id	gacklight +10
+bindsym XF86MonBrightnessDown	exec --no-startup-id	gacklight -10
+bindsym XF86AudioLowerVolume	exec --no-startup-id	golume 4%-
+bindsym XF86AudioRaiseVolume	exec --no-startup-id	golume 4%+
+bindsym XF86AudioMute			exec --no-startup-id	golume toggle
+#bindsym XF86AudioNext			exec --no-startup-id	playerctl next
+#bindsym XF86AudioPlay			exec --no-startup-id	playerctl play-pause
+#bindsym XF86AudioPrev			exec --no-startup-id	playerctl previous
+
+# apps and lock
+bindsym $mod+q	kill
+bindsym $mod+F1	exec --no-startup-id	glock
+#bindsym $mod+d	exec --no-startup-id	rofi -sidebar-mode -show run
+bindsym $mod+w	exec --no-startup-id	gmpv
+bindsym $mod+b	exec --no-startup-id	firefox
+bindsym $mod+n	exec --no-startup-id	nautilus
+bindsym $mod+g	exec --no-startup-id	gedit
+bindsym $mod+a	exec --no-startup-id	genu ap
+bindsym $mod+z	exec --no-startup-id	genu ex
+bindsym $mod+c	exec --no-startup-id	clipmenu && xdotool key ctrl+v
+bindsym $mod+e	exec --no-startup-id	~/.fehbg
+bindsym $mod+d	exec --no-startup-id	gtrans
+bindsym Print	exec --no-startup-id	gcrot
+
+bindsym $mod+Shift+q	[workspace=__focused__]	kill
+#bindsym $mod+Print		exec --no-startup-id	gnome-screenshot -a
+bindsym $mod+Shift+c	exec --no-startup-id	clipdel -d ".*" && dunstify Clipdel!
+bindsym $mod+Return		exec --no-startup-id	urxvtc
+#bindsym $mod+Tab		exec --no-startup-id	"rofi -sidebar-mode -modi window,windowcd,run -show"
+
+#for_window [class="Gnome-calculator"]	floating enable
+for_window [class="TelegramDesktop"]	floating enable
+for_window [window_role="About"]		floating enable
+#for_window [class="mpv"] floating enable
+#for_window [title="~/build"] floating enable
+#for_window [title="htop"] move container to workspace $ws0
+#assign [title="~/build"] $ws0
+#assign [class="Gnome-terminal"] $ws0
+#for_window [class="Gnome-terminal"] focus
+
+# control
+bindsym $mod+space	floating toggle
+bindsym $mod+t		layout toggle tabbed splith splitv
+bindsym $mod+s		split toggle
+bindsym $mod+f		fullscreen toggle
+bindsym $mod+p		focus parent
+bindsym $mod+o		focus child
+bindsym $mod+i		focus mode_toggle
+
+#bindsym $mod+KP_Subtract	move scratchpad
+bindsym $mod+Shift+KP_Add	move scratchpad
+bindsym $mod+KP_Add			scratchpad show
+bindsym $mod+KP_Enter		sticky toggle
+
+set $mode_floating stick[y], sc[r]a[t]chpad
+bindsym $mod+r mode "$mode_floating"
+mode "$mode_floating" {
+		bindsym Return	mode default
+		bindsym Escape	mode default
+		
+		bindsym r move scratchpad
+		bindsym t scratchpad show
+		bindsym y sticky toggle
+		
+		bindsym $left	move left 10 px
+		bindsym $down	move down 10 px
+		bindsym $up		move up 10 px
+		bindsym $right	move right 10 px
+
+		bindsym $mod+$left	resize shrink	width	10 px or 5 ppt
+		bindsym $mod+$down	resize grow		height	10 px or 5 ppt
+		bindsym $mod+$up	resize shrink	height	10 px or 5 ppt
+		bindsym $mod+$right	resize grow		width	10 px or 5 ppt
+}
+
+# focus and move and swap
+bindsym $mod+$left			focus left
+bindsym $mod+$down			focus down
+bindsym $mod+$up			focus up
+bindsym $mod+$right			focus right
+
+bindsym $mod+Shift+$left	move left
+bindsym $mod+Shift+$down	move down
+bindsym $mod+Shift+$up		move up
+bindsym $mod+Shift+$right	move right
+
+#bindsym $mod+Ctrl+$left		mark swap; focus left;	swap container with mark swap; unmark swap
+#bindsym $mod+Ctrl+$down		mark swap; focus down;	swap container with mark swap; unmark swap
+#bindsym $mod+Ctrl+$up		mark swap; focus up;	swap container with mark swap; unmark swap
+#bindsym $mod+Ctrl+$right	mark swap; focus right;	swap container with mark swap; unmark swap
+
+# workspaces #·−·
+set $ws1 0:α
+set $ws2 1:β
+set $ws3 2:γ
+set $ws4 3:δ
+set $ws5 4:ε
+set $ws6 5:ζ
+set $ws7 6:η
+set $ws8 7:θ
+set $ws9 8:ι
+set $ws0 9:κ
+
+bindsym $alt+1 workspace $ws1
+bindsym $alt+2 workspace $ws2
+bindsym $alt+3 workspace $ws3
+bindsym $alt+4 workspace $ws4
+bindsym $alt+5 workspace $ws5
+bindsym $alt+6 workspace $ws6
+bindsym $alt+7 workspace $ws7
+bindsym $alt+8 workspace $ws8
+bindsym $alt+9 workspace $ws9
+bindsym $alt+0 workspace $ws0
+
+bindsym $alt+Shift+1 move container to workspace $ws1
+bindsym $alt+Shift+2 move container to workspace $ws2
+bindsym $alt+Shift+3 move container to workspace $ws3
+bindsym $alt+Shift+4 move container to workspace $ws4
+bindsym $alt+Shift+5 move container to workspace $ws5
+bindsym $alt+Shift+6 move container to workspace $ws6
+bindsym $alt+Shift+7 move container to workspace $ws7
+bindsym $alt+Shift+8 move container to workspace $ws8
+bindsym $alt+Shift+9 move container to workspace $ws9
+bindsym $alt+Shift+0 move container to workspace $ws0
+
+# bar
+bindsym $mod+Shift+x	bar		mode			toggle
+bindsym $mod+x			bar		hidden_state	toggle
+bindsym $alt+x			exec	--no-startup-id	pkill -USR1 gtatus
+bar {
+		mode				hide
+		position			top
+		modifier			$alt
+		tray_output			none
+		status_command		gtatus #i3status
+		separator_symbol	"|" #"×|"
+		strip_workspace_numbers	yes
+
+		colors {
+				separator	#928374
+				background	#1d2021
+				statusline	#ebdbb2
+
+				# class				border background text
+				focused_workspace	#fabd2f	#fabd2f	#282828
+				active_workspace	#d79921	#d79921	#282828
+				inactive_workspace	#928374	#282828	#ebdbb2
+				urgent_workspace	#fb4934	#fb4934	#282828
+		}
+}
+
+# class					border background text indicator child_border
+client.focused			#fabd2f	#fabd2f	#282828	#fb4934	#fabd2f
+client.focused_inactive	#d79921	#d79921	#282828	#cc241d	#d79921
+client.unfocused		#928374	#282828	#ebdbb2	#cc241d	#928374
+client.urgent			#fb4934	#fb4934	#282828	#000000 #fb4934
+client.background		#ffffff
+#928374 or #665c54

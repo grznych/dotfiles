@@ -1,0 +1,56 @@
+general {
+		output_format	= i3bar
+		colors			= true
+		interval		= 1
+		color_good		= "#b8bb26"
+		color_degraded	= "#fabd2f"
+		color_bad		= "#fb4934"
+				#"#34fb49"
+}
+
+order += "wireless _first_"
+order += "disk /"
+order += "disk /home"
+order += "battery all"
+order += "volume master"
+order += "time"
+
+battery all {
+		format						= "%status[%percentage] %remaining"
+		format_down					= "ω"
+		status_chr					= "ζ "
+		status_bat					= "ρ "
+		status_unk					= "? "
+		status_full					= ""
+		low_threshold				= 50
+		hide_seconds				= true
+		integer_battery_capacity	= true
+}
+
+volume master {
+		format			= "Ω: %volume"
+		format_muted	= "ω: [%volume]"
+}
+
+wireless _first_ {
+		format_up	= "%essid ~%quality"
+		format_down	= "ω"
+}
+
+time {
+		format	= "[%a: %d.%m.%Y] %H:%M:%S"
+}
+
+disk "/" {
+		format = "%used [%percentage_used]"
+		low_threshold = 50
+		threshold_type = percentage_free
+		prefix_type = decimal
+}
+
+disk "/home" {
+		format = "%used [%percentage_used]"
+		low_threshold = 25
+		threshold_type = percentage_free
+		prefix_type = decimal
+}
