@@ -1,0 +1,21 @@
+#!/bin/sh
+revert() {
+    i3-msg bar mode hide > /dev/null &
+    dunstify DUNST_COMMAND_RESUME &
+    numlockx &
+    xset dpms 0
+}
+trap revert HUP INT TERM
+
+(( `pgrep -o ${0##*/} | head -n1` != $$ )) && exit
+
+{
+    dunstify DUNST_COMMAND_PAUSE
+    xset dpms 20
+    numlockx off
+    i3-msg bar mode invisible > /dev/null
+} &
+
+i3lock -mnueB=
+
+revert

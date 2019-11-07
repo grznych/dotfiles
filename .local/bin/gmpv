@@ -1,0 +1,3 @@
+#!/bin/sh
+dunstify -r 300 mpv:\ download!
+mpv `xsel` || dunstify -r 300 mpv:\ fail!

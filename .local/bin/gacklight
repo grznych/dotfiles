@@ -1,0 +1,4 @@
+#!/bin/sh
+(( `pgrep -o ${0##*/} | head -1` != $$ )) && exit
+xbacklight $((`xbacklight -get`$1))
+dunstify -a vb -r 100 -u low β:\ `xbacklight -get`% &

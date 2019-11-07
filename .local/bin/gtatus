@@ -1,0 +1,8 @@
+#!/bin/zsh
+trap '((key)) && key=0 || key=1' USR1
+i3status | while read line ; do
+    arr=(${(ps.\},.)line})
+    [[ $arr[4] =~ 100.{3}$ ]] && arr[4]=()
+    ((key)) || arr[2,3]=() arr[-1]=${${arr[-1]}/\[*] /}
+    echo ${(pj.\},.)arr} || exit 1
+done

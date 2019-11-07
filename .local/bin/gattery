@@ -1,0 +1,3 @@
+#!/bin/zsh
+cp=`<${h=/sys/class/power_supply/BAT0}/capacity`
+[[ `<$h/status` != Charging && $cp -lt 50 ]] && dunstify -u critical -r 50 "LOW BATTERY: $cp%"

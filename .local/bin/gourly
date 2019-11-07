@@ -1,0 +1,6 @@
+#!/bin/sh
+case `date +%-H` in
+    [1-7]) dunstify -u critical -t 10000 `date +%T` ;;
+    [089]|23) dunstify `date +%T` ;;
+    *) dunstify -u low -t 1000 `date +%T`
+esac
