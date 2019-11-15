@@ -1,3 +1,3 @@
 #!/bin/sh
 dunstify -r 300 -u low Перевод…
-dunstify -r 300 -u low -t 0 Перевод: "`trans -b :ru "$(xsel)"`"
+dunstify -r 300 -u low -t 0 Перевод: "`xsel | trans -b :ru`"
