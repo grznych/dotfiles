@@ -1,6 +1,6 @@
 #!/bin/zsh
 rt() { unset sel u a i
-    op=(-dmenu -markup-rows -format d -width -15 -theme grznych -l $(($#/3)))
+    op=(-dmenu -markup-rows -format d -width -15 -theme grznych -l $((#/3)))
     for tit key _ in $@ ; do
         [[ $key[2] ]] && eval $key[2]+=${i=0},
         op+=(-kb-select-$((++i)) ${k::=$key[1]})
