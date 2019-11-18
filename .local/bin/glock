@@ -1,6 +1,6 @@
 #!/bin/sh
 revert() {
-    i3-msg bar mode hide > /dev/null &
+    i3-msg -q bar mode hide &
     dunstify DUNST_COMMAND_RESUME &
     numlockx &
     xset dpms 0
@@ -13,7 +13,7 @@ trap revert HUP INT TERM
     dunstify DUNST_COMMAND_PAUSE
     xset dpms 20
     numlockx off
-    i3-msg bar mode invisible > /dev/null
+    i3-msg -q bar mode invisible
 } &
 
 i3lock -mnueB=
