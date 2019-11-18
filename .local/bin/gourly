@@ -1,5 +1,4 @@
 #!/bin/sh
-case `date +%-H` in
-    [1-7]) t="-u critical -t 10000" ;;
-    ?[^3]|13) t="-u low -t 1000"
-esac ; dunstify $t `date +%T`
+(( 9 < (h=`date +%-H`) && h < 23 )) && t="-u low -t 1000"
+(( 0 < h && h < 8 )) && t="-u critical -t 10000"
+dunstify $t `date +%T`
