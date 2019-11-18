@@ -1,39 +1,39 @@
 #!/bin/zsh
 rt() { unset sel u a i
-	op=(-dmenu -markup-rows -format d -width -15 -theme grznych -l $(($#/3)))
-	for tit key _ in $@ ; do
-		[[ $key[2] ]] && eval $key[2]+=${i=0},
-		op+=(-kb-select-$((++i)) ${k::=$key[1]})
-		[[ $tit:l != $k* && $tit =~ [$k$k:u] ]]
-		sel+=(${tit/$MATCH/<u>$MATCH</u>})
-	done
-	i=`echo ${(F)sel} | rofi $op ${u+-u} $u ${a+-a} $a` && eval "$@[i*3] &" }
+    op=(-dmenu -markup-rows -format d -width -15 -theme grznych -l $(($#/3)))
+    for tit key _ in $@ ; do
+        [[ $key[2] ]] && eval $key[2]+=${i=0},
+        op+=(-kb-select-$((++i)) ${k::=$key[1]})
+        [[ $tit:l != $k* && $tit =~ [$k$k:u] ]]
+        sel+=(${tit/$MATCH/<u>$MATCH</u>})
+    done
+    i=`rofi $op ${u+-u} $u ${a+-a} $a <<< ${(F)sel}` && eval "$@[i*3] &" }
 
-		#title		   #key	#command
-ap() rt	Terminal		t	urxvtc								\
-		TeXstudio		x	texstudio									\
-		Calculator		c	gnome-calculator							\
-		Mathematica\ 11	mu	~/.mathematica/Mathematica					\
-		Other			oa	ot											\
-		Internet		ia	it
+        #title         #key #command
+ap() rt Terminal        t   urxvtc                    \
+        TeXstudio       x   texstudio                 \
+        Calculator      c   gnome-calculator          \
+        Mathematica\ 11 mu  ~/.mathematica/Mathematica\
+        Other           oa  ot                        \
+        Internet        ia  it
 
-ot() rt	Disks			da	gnome-disks									\
-		GParted			ga	gparted										\
-		Baobab			b	baobab										\
-		Evince			e	evince										\
-		Sims\ 4			iu	~/Downloads/Sims_4_Linux/start.sh			\
-		Steam			s	steam
+ot() rt Disks           da  gnome-disks                      \
+        GParted         ga  gparted                          \
+        Baobab          b   baobab                           \
+        Evince          e   evince                           \
+        Sims\ 4         iu  ~/Downloads/Sims_4_Linux/start.sh\
+        Steam           s   steam
 
-it() rt	Firefox			f	firefox\ --private-window					\
-		Tor				t	tor-browser									\
-		Telegram		g	telegram-desktop							\
-		Transmission	r	transmission-gtk
+it() rt Firefox         f   firefox\ --private-window\
+        Tor             t   tor-browser              \
+        Telegram        g   telegram-desktop         \
+        Transmission    r   transmission-gtk
 
-ex() rt	Shutdown		wu	systemctl\ poweroff							\
-		Reboot			ru	systemctl\ reboot							\
-		Suspend			sa	systemctl\ suspend							\
-		Lock			l	glock									\
-		Reload\ i3		e	'i3-msg reload && dunstify "i3: reload"'	\
-		Restart\ i3		t	i3-msg\ restart								\
-		Config\ i3		c	gedit\ ~/.config/i3/config
+ex() rt Shutdown        wu  systemctl\ poweroff                    \
+        Reboot          ru  systemctl\ reboot                      \
+        Suspend         sa  systemctl\ suspend                     \
+        Lock            l   glock                                  \
+        Reload\ i3      e   'i3-msg reload && dunstify i3:\ reload'\
+        Restart\ i3     t   i3-msg\ restart                        \
+        Config\ i3      c   gedit\ ~/.config/i3/config
 $1
