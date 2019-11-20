@@ -2,27 +2,31 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 setopt share_history hist_reduce_blanks hist_ignore_all_dups correct prompt_subst
+autoload -Uz compinit vcs_info && compinit
 
-autoload -U compinit && compinit
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format "%F{yellow}%B---%d---%b%f"
-zstyle ':completion:*:messages' format '%F{red}%B%d%b%f'
-#zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
-#zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+precmd() {
+    print -Pn '\e]0;%~\a'
+    vcs_info ; case $vcs_info_msg_0_ in '' )  ;;
+        *  ) local t=green p=([ ])            ;|
+        US*) p=(%F{yellow}\[%f %F{yellow}]%f) ;&
+        U* ) t=red                            ;|
+        S* ) t=yellow                         ;&
+    *) vcs_info_msg_0_=$p[1]%F{$t}${vcs_info_msg_0_#*:}%f$p[2] ; esac
+}
 
-precmd () print -Pn '\e]0;%~\a'
-preexec () print -Pn '\e]0;$1\a'
+preexec() print -Pn '\e]0;$1\a'
 
-cold()case `date +%-H` in;[1-7])echo red;;[089]|23)echo yellow;;*)echo green;esac
-chhm(){[[ $PWD = $HOME* ]]&&echo blue||echo cyan}
+cold() {
+    (( 0 < ${p=`date +%-H`} && $p < 8 )) && t=red
+    (( 9 < $p && $p < 23 )) && t=green
+    echo ${t=yellow}
+}
 
-#precmd() { [[ $? != 0 && $beep == on ]] && echo rassol }
+chhm() { [[ $PWD = $HOME* ]] && t=blue ; echo ${t=cyan} }
 
-PROMPT='%B[%F{$(cold)}%T%f][%F{$(chhm)}%~%f]%F{%(?.green.red)}$%f%b '
+PROMPT='%B[%F{$(cold)}%T%f][%F{$(chhm)}%~%f]${vcs_info_msg_0_}%F{%(?.green.red)}$%f%b '
 RPROMPT='%B[%F{%(?.green.red)}%?%f]%b'
 
 export SYSTEMD_LESS=FRXMK
@@ -54,3 +58,19 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #    LESS_TERMCAP_us=$'\e[01;32m' \
 #    command man "$@"
 #}
+
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format "%F{yellow}%B---%d---%b%f"
+zstyle ':completion:*:messages' format '%F{red}%B%d%b%f'
+#zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
+#zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' actionformats '%u%c:%b:%a'
+zstyle ':vcs_info:*' formats '%u%c:%b'
