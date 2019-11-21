@@ -2,31 +2,26 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-setopt share_history hist_reduce_blanks hist_ignore_all_dups correct prompt_subst
+setopt share_history hist_reduce_blanks hist_ignore_all_dups correct
 autoload -Uz compinit vcs_info && compinit
-
-precmd() {
-    print -Pn '\e]0;%~\a'
-    vcs_info ; case $vcs_info_msg_0_ in '' )  ;;
-        *  ) local t=green p=([ ])            ;|
-        US*) p=(%F{yellow}\[%f %F{yellow}]%f) ;&
-        U* ) t=red                            ;|
-        S* ) t=yellow                         ;&
-    *) vcs_info_msg_0_=$p[1]%F{$t}${vcs_info_msg_0_#*:}%f$p[2] ; esac
-}
 
 preexec() print -Pn '\e]0;$1\a'
 
-cold() {
-    (( 0 < ${p=`date +%-H`} && $p < 8 )) && t=red
-    (( 9 < $p && $p < 23 )) && t=green
-    echo ${t=yellow}
+precmd() {
+    print -Pn '\e]0;%~\a' ; vcs_info
+    psvar=(yellow cyan cyan ${vcs_info_msg_0_#*:})
+    local hs=`date +%-H`
+    (( 0 < $hs && $hs <  8 )) && psvar[1]=red
+    (( 9 < $hs && $hs < 23 )) && psvar[1]=green
+    [[ $PWD = $HOME* ]]       && psvar[2]=blue
+    case ${vcs_info_msg_0_%%:*} in
+        US) psvar[3]=red    ;;
+        U ) psvar[3]=yellow ;;
+        S ) psvar[3]=green
+    esac
 }
 
-chhm() { [[ $PWD = $HOME* ]] && t=blue ; echo ${t=cyan} }
-
-PROMPT='%B[%F{$(cold)}%T%f][%F{$(chhm)}%~%f]${vcs_info_msg_0_}%F{%(?.green.red)}$%f%b '
+PROMPT='%B[%F{%v}%T%f][%F{%2v}%~%f]%(4V.[%F{%3v}%4v%f].)%F{%(?.green.red)}$%f%b '
 RPROMPT='%B[%F{%(?.green.red)}%?%f]%b'
 
 export SYSTEMD_LESS=FRXMK
@@ -59,8 +54,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #    command man "$@"
 #}
 
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ''
@@ -70,7 +63,10 @@ zstyle ':completion:*:messages' format '%F{red}%B%d%b%f'
 #zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
 #zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
-zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' actionformats '%u%c:%b:%a'
 zstyle ':vcs_info:*' formats '%u%c:%b'
+zstyle ':vcs_info:*' check-for-changes true
+
+#. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
