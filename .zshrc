@@ -5,7 +5,7 @@ HISTFILE=~/.zsh_history
 setopt share_history hist_reduce_blanks hist_ignore_all_dups correct
 autoload -Uz compinit vcs_info && compinit
 
-preexec() print -Pn '\e]0;$1\a'
+preexec() print -Pn "\e]0;$1\a"
 
 precmd() {
     print -Pn '\e]0;%~\a' ; vcs_info
