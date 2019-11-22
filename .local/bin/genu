@@ -4,8 +4,8 @@ rt() { unset sel u a i
     for tit key _ in $@ ; do
         [[ $key[2] ]] && eval $key[2]+=${i=0},
         op+=(-kb-select-$((++i)) ${k::=$key[1]})
-        [[ $tit:l != $k* && $tit =~ [$k$k:u] ]]
-        sel+=(${tit/$MATCH/<u>$MATCH</u>})
+        [[ $tit:l != $k* && $tit =~ [$k$k:u] ]] &&
+        tit=${tit/$MATCH/<u>$MATCH</u>} ; sel+=($tit)
     done
     i=`rofi $op ${u+-u} $u ${a+-a} $a <<< ${(F)sel}` && eval "$@[i*3] &" }
 
