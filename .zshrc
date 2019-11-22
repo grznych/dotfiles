@@ -10,15 +10,11 @@ preexec() print -Pn "\e]0;$1\a"
 precmd() {
     print -Pn '\e]0;%~\a' ; vcs_info
     psvar=(yellow cyan cyan ${vcs_info_msg_0_#*:})
-    local hs=`date +%-H`
-    (( 0 < $hs && $hs <  8 )) && psvar[1]=red
-    (( 9 < $hs && $hs < 23 )) && psvar[1]=green
-    [[ $PWD = $HOME* ]]       && psvar[2]=blue
-    case ${vcs_info_msg_0_%%:*} in
-        US) psvar[3]=red    ;;
-        U ) psvar[3]=yellow ;;
-        S ) psvar[3]=green
-    esac
+    local hs=`date +%-H` US=red U=yellow S=green
+    (( 0 < $hs && $hs <  8 ))            && psvar[1]=red
+    (( 9 < $hs && $hs < 23 ))            && psvar[1]=green
+    [[ $PWD = $HOME* ]]                  && psvar[2]=blue
+    [[ ${hs::=${vcs_info_msg_0_%%:*}} ]] && psvar[3]=${(P)hs}
 }
 
 PROMPT='%B[%F{%v}%T%f][%F{%2v}%~%f]%(4V.[%F{%3v}%4v%f].)%F{%(?.green.red)}$%f%b '
