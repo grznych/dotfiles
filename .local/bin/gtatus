@@ -1,5 +1,5 @@
 #!/bin/zsh
-trap '((key)) && key=0 || key=1' USR1
+TRAPUSR1() key=$((!key))
 i3status | while read line ; do
     arr=(${(ps.\},.)line})
     [[ $arr[4] =~ 100.{3}$ ]] && arr[4]=()
