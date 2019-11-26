@@ -1,5 +1,5 @@
 #!/bin/sh
-v=`amixer set Master $1 | grep -o [0-9]*% -m1`
-pactl list sinks | grep -q Port:\ analog-output-headphones && t=(-u low)
-amixer get Master | grep -q '\[on\]' && t+=(Ω:\ $v) || t+=(ω:\ [$v])
-dunstify -a vb -r 200 "${t[@]}"
+t=(Ω:\ ${v=`amixer set Master $1 | grep -o [0-9]*% -m1`} ω:\ [$v])
+pactl list sinks | grep -q Port:\ analog-output-headphones && t+=(-u\ low)
+amixer get Master | grep -q '\[on\]'
+dunstify -a vb -r 200 ${t[2]} "${t[$?]}"
