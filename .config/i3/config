@@ -153,7 +153,7 @@ bindsym $alt+Shift+0 move container to workspace $ws0
 # bar
 bindsym $mod+Shift+x	bar		mode			toggle
 bindsym $mod+x			bar		hidden_state	toggle
-bindsym $alt+x			exec	--no-startup-id	pkill -USR1 gtatus
+bindsym $alt+x			exec	--no-startup-id	pkill -USR1 tatus
 bar {
 		mode				hide
 		position			top
