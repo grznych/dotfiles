@@ -1,14 +1,13 @@
 #!/bin/zsh
-op=(-dmenu -markup-rows -format d -width -15 -theme grznych)
+o=(-dmenu -markup-rows -format d -width -15 -theme grznych)
 rt() {
-    local u a sel=() i=0 m=(-l $((#/3)))
-    for tit key _ in $@ ; do
-        [[ $key[2] ]] && eval $key[2]+=$i,
-        m+=(-kb-select-$((++i)) ${k::=$key[1]})
-        [[ $tit:l != $k* && $tit =~ [$k$k:u] ]] &&
-        tit=${tit/$MATCH/<u>$MATCH</u>} ; sel+=($tit)
+    local u a s=() i=0 p=(-l $((#/3)))
+    for t k _ in $@ ; do
+        [[ $k[2] ]] && eval $k[2]+=$i, ; k[2]=$k[1]:u
+        (( 1 < (j=t[(i)[$k]]) && j <= #t )) && t[j]="<u>$t[j]</u>"
+        p+=(-kb-select-$((++i)) $k[1]) s+=$t
     done
-    i=`rofi $op $m ${u:+-u} $u ${a:+-a} $a <<< ${(F)sel}` && eval "$@[i*3] &"
+    i=`rofi $o $p ${u:+-u} $u ${a:+-a} $a <<< ${(F)s}` && eval "$@[i*3] &"
 }
 
     #title         #key #command
