@@ -3,17 +3,17 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 setopt share_history hist_reduce_blanks hist_ignore_all_dups correct
-autoload -Uz compinit vcs_info && compinit
+autoload -Uz vcs_info compinit && compinit
 
-preexec() print -Pn "\e]0;$1\a"
+preexec() print -n "\e]0;$1\a"
 
 precmd() {
     print -Pn '\e]0;%~\a' ; vcs_info
-    psvar=(yellow cyan cyan ${vcs_info_msg_0_#*:})
+    psvar=(yellow magenta blue ${vcs_info_msg_0_#*:})
     local hs=`date +%-H` US=red U=yellow S=green
     (( 0 < $hs && $hs <  8 ))            && psvar[1]=red
     (( 9 < $hs && $hs < 23 ))            && psvar[1]=green
-    [[ $PWD = $HOME* ]]                  && psvar[2]=blue
+    [[ $PWD:A = $HOME* ]]                && psvar[2]=cyan
     [[ ${hs::=${vcs_info_msg_0_%%:*}} ]] && psvar[3]=${(P)hs}
 }
 
@@ -53,9 +53,13 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format "%F{yellow}%B---%d---%b%f"
-zstyle ':completion:*:messages' format '%F{red}%B%d%b%f'
+zstyle ':completion:*:descriptions' format '%B[%F{yellow}%d%f]%b'
+zstyle ':completion:*:messages' format '%B[%F{red}%d%f]%b'
+
+bindkey -v
+
 #zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
 #zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
@@ -64,5 +68,4 @@ zstyle ':vcs_info:*' actionformats '%u%c:%b:%a'
 zstyle ':vcs_info:*' formats '%u%c:%b'
 zstyle ':vcs_info:*' check-for-changes true
 
-#. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
