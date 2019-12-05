@@ -58,6 +58,9 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 #    return 127
 #}
 
+bindkey -v
+
+zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors 'ma=7;33'
@@ -65,11 +68,9 @@ zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B[%F{yellow}%d%f]%b'
 zstyle ':completion:*:messages' format '%B[%F{red}%d%f]%b'
-
-bindkey -v
+zstyle ':completion:*:corrections' format '%B[%F{red}%d:%e%f]%b'
 
 #zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
-#zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' actionformats '%u%c:%b:%a'
