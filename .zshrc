@@ -2,7 +2,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-setopt share_history hist_reduce_blanks hist_ignore_all_dups correct
+setopt share_history hist_ignore_space hist_reduce_blanks hist_ignore_all_dups correct auto_cd menu_complete complete_in_word
+
 autoload -Uz vcs_info compinit && compinit
 
 preexec() print -n "\e]0;$1\a"
@@ -19,6 +20,8 @@ precmd() {
 
 PROMPT='%B[%F{%v}%T%f][%F{%2v}%~%f]%(4V.[%F{%3v}%4v%f].)%F{%(?.green.red)}$%f%b '
 RPROMPT='%B[%F{%(?.green.red)}%?%f]%b'
+SPROMPT='Correct %B%F{red}%R%f%b to %B%F{yellow}%r%f%b [nyae]? '
+MENUPROMPT='%S%F{green}%P%f%s'
 
 export SYSTEMD_LESS=FRXMK
 
@@ -40,19 +43,24 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-#man() {
-#    LESS_TERMCAP_md=$'\e[01;31m' \
-#    LESS_TERMCAP_me=$'\e[0m' \
-#    LESS_TERMCAP_se=$'\e[0m' \
-#    LESS_TERMCAP_so=$'\e[01;44;33m' \
-#    LESS_TERMCAP_ue=$'\e[0m' \
-#    LESS_TERMCAP_us=$'\e[01;32m' \
-#    command man "$@"
+#command_not_found_handler() {
+#    local pkgs=(${(f)"$(pacman -Fq $1 2>/dev/null)"})
+#    if [[ $pkgs ]]; then
+#        print -P "%B%F{red}$1%f%b may be found in the following packages:"
+#        for p in $pkgs ; do
+#            #echo ${p[(i)/]}
+#            p[p[(i)/]]+=%B%F{yellow}
+#            print -P "    $p%f%b"
+#        done
+#    else
+#        print -P "Command not found: %B%F{red}$1%f%b"
+#    fi 1>&2
+#    return 127
 #}
 
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors 'ma=7;33'
 zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B[%F{yellow}%d%f]%b'
@@ -67,5 +75,3 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' actionformats '%u%c:%b:%a'
 zstyle ':vcs_info:*' formats '%u%c:%b'
 zstyle ':vcs_info:*' check-for-changes true
-
-#. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
