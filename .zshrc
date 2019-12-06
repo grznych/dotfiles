@@ -1,7 +1,7 @@
-HISTSIZE=1000 SAVEHIST=1000 HISTFILE=~/.zsh_history
+HISTSIZE=500 SAVEHIST=1000 HISTFILE=~/.zsh_history
 
-setopt share_history hist_ignore_space hist_reduce_blanks hist_ignore_all_dups
-setopt correct auto_cd complete_in_word extended_glob
+setopt -g share_history hist_reduce_blanks hist_ignore_all_dups
+setopt -JN0 pushd_ignore_dups complete_in_word
 
 autoload -Uz vcs_info compinit && compinit
 
@@ -35,17 +35,6 @@ export LESS_TERMCAP_us=$'\e[1;32m'
 export LESS_TERMCAP_ue=$'\e[0m'
 
 export SYSTEMD_LESS=FRXMK
-
-command_not_found_handler() {
-    local pkgs=(${(f)"$(pacman -F $1 2>/dev/null)"})
-    if [[ $pkgs ]]; then
-        print -P "%B%F{red}$1%f%b may be found in the following packages:"
-        print -Pf "  %s\n" ${pkgs/\/(#b)(*) //%B%F{yellow}$match%f%b }
-    else
-        print -P "Command not found: %B%F{red}$1%f%b"
-    fi 1>&2
-    return 127
-}
 
 bindkey -v
 
