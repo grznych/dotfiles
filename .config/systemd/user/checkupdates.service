@@ -2,4 +2,4 @@
 Description=Check updates pacman
 
 [Service]
-ExecStart=-%h/.local/bin/geckupdates
+ExecStart=-%h/.local/bin/geck
