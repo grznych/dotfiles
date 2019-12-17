@@ -10,7 +10,7 @@ rt() {
     i=`$r $p ${u:+-u} $u ${a:+-a} $a <<< ${(F)s}` && eval "$@[i*3] &"
 }
 
-    #title         #key #command
+#   title           key command
 ap=(Terminal        t   urxvtc
     TeXstudio       x   texstudio
     Calculator      c   gnome-calculator
