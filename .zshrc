@@ -36,12 +36,14 @@ export LESS_TERMCAP_ue=$'\e[0m'
 
 export SYSTEMD_LESS=FRXMK
 
+eval `dircolors`
+
 bindkey -v
 
 zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu true select
-zstyle ':completion:*' list-colors 'ma=7;33'
+zstyle ':completion:*' list-colors "${LS_COLORS}ma=7;33"
 zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B[%F{yellow}%d%f]%b'
