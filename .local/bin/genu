@@ -3,11 +3,11 @@ r=(rofi -dmenu -markup-rows -format d -width -15 -theme grznych)
 rt() {
     local u a s=() i=0 p=(-l $((#/3)))
     for t k c in $@ ; do
-        [[ $k[2] ]] && eval $k[2]+=$i, ; k[2]=$k[1]:u
+        eval $k[2]${k[2]:++=$i,} ; k[2]=$k[1]:u
         (( 1 < (j=t[(i)[$k]]) && j <= #t )) && t[j]="<u>$t[j]</u>"
-        p+=(-kb-select-$((++i)) $k[1]) s+=$t
+        s+=$t p+=(-kb-select-$((++i)) $k[1])
     done
-    i=`$r $p ${u:+-u} $u ${a:+-a} $a <<< ${(F)s}` && eval "$@[i*3] &"
+    i=`$r $p ${u:+-u} $u ${a:+-a} $a <<< ${(F)s}` && eval $@[i*3] \&
 }
 
 #   title           key command
@@ -15,8 +15,8 @@ ap=(Terminal        t   urxvtc
     TeXstudio       x   texstudio
     Calculator      c   gnome-calculator
     Mathematica\ 11 mu  ~/.mathematica/Mathematica
-    Other           oa  'rt $ot'
-    Internet        ia  'rt $it')
+    Other           oa  genu\ ot
+    Internet        ia  genu\ it)
 
 ot=(Disks           da  gnome-disks
     GParted         ga  gparted
