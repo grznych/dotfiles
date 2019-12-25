@@ -27,15 +27,15 @@ export CM_LAUNCHER=rofi
 PATH+=:$HOME/.local/bin
 
 { ~/.fehbg; glock; } &
+setxkbmap us,ruf "" grp:caps_toggle,grp_led:caps,grp:switch -print |
+xkbcomp -w0 -I$HOME/.config/xkb/ - $DISPLAY &
 xxkb &
 redshift &
 urxvtd -q -o -f &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
 #xrandr --output HDMI-0 --left-of LVDS &
-
 #xrandr --output HDMI-0 --mode 1360x768 --same-as LVDS &
-#setxkbmap "pl,ru_fix" "" "grp:caps_toggle,grp_led:caps" &
 #compton &
 
 exec i3
