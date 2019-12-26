@@ -1,0 +1,24 @@
+xkb_keymap {
+    xkb_keycodes { include "evdev+aliases(qwerty)" };
+    xkb_types    { include "complete" };
+    xkb_compat   { include "complete+ledcaps(group_lock)" };
+    xkb_symbols  { include "pc+us+ru:2+inet(evdev)+capslock(grouplock)"
+        key <TLDE> { [], [          U0301,     percent ] };
+        key <AE01> { [], [      semicolon,           1 ] };
+        key <AE02> { [], [          colon,           2 ] };
+        key <AE03> { [], [      parenleft,           3 ] };
+        key <AE04> { [], [     parenright,           4 ] };
+        key <AE05> { [], [          minus,           5 ] };
+        key <AE06> { [], [          comma,           6 ] };
+        key <AE07> { [], [         period,           7 ] };
+        key <AE08> { [], [         emdash,           8 ] };
+        key <AE09> { [], [       question,           9 ] };
+        key <AE10> { [], [         exclam,           0 ] };
+        key <AE11> { [], [  guillemotleft,        less ] };
+        key <AE12> { [], [ guillemotright,     greater ] };
+        key <BKSL> { [], [       ellipsis,  underscore ] };
+        key <AB10> { [], [    Cyrillic_io, Cyrillic_IO ] };
+        key <RALT> {     [    Mode_switch, Mode_switch ] };
+    };
+    xkb_geometry { include "pc(pc105)" };
+};
