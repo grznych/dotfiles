@@ -35,24 +35,24 @@ bindsym XF86AudioMute         exec --no-startup-id golume toggle
 #bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
 
 # apps and lock
-bindsym $mod+q  kill
-bindsym $mod+F1 exec --no-startup-id glock
-bindsym $mod+w  exec --no-startup-id gmpv
-bindsym $mod+b  exec --no-startup-id firefox
-bindsym $mod+n  exec --no-startup-id nautilus
-bindsym $mod+g  exec --no-startup-id gedit
-bindsym $mod+a  exec --no-startup-id genu ap
-bindsym $mod+z  exec --no-startup-id genu ex
-bindsym $mod+c  exec --no-startup-id clipmenu && xdotool key ctrl+v
-bindsym $mod+e  exec --no-startup-id ~/.fehbg
-bindsym $mod+d  exec --no-startup-id gtrans
-bindsym Print   exec --no-startup-id gcrot
-
-bindsym $mod+Shift+q [workspace=__focused__] kill
-bindsym $mod+Print   exec --no-startup-id    gcrot -s
-bindsym $mod+Shift+c exec --no-startup-id    clipdel -d .* && dunstify Clipdel!
-bindsym $mod+Return  exec --no-startup-id    urxvtc
-bindsym $mod+Tab     exec --no-startup-id    "rofi -sidebar-mode -modi window,windowcd,run -show"
+bindsym $mod+q      kill
+bindsym $alt+q      [workspace=__focused__] kill
+bindsym $mod+F1     exec --no-startup-id    glock
+bindsym $mod+w      exec --no-startup-id    gmpv
+bindsym $mod+b      exec --no-startup-id    firefox
+bindsym $mod+n      exec --no-startup-id    urxvtc -e ranger
+bindsym $mod+h      exec --no-startup-id    urxvtc -e htop
+bindsym $mod+g      exec --no-startup-id    gedit
+bindsym $mod+a      exec --no-startup-id    genu ap
+bindsym $mod+z      exec --no-startup-id    genu ex
+bindsym $mod+c      exec --no-startup-id    clipmenu && xdotool key ctrl+v
+bindsym $mod+v      exec --no-startup-id    clipdel -d .* && dunstify Clipdel!
+bindsym $mod+e      exec --no-startup-id    ~/.fehbg
+bindsym $mod+d      exec --no-startup-id    gtrans
+bindsym Print       exec --no-startup-id    gcrot
+bindsym $mod+Print  exec --no-startup-id    gcrot -s
+bindsym $mod+Return exec --no-startup-id    urxvtc
+bindsym $mod+Tab    exec --no-startup-id    "rofi -sidebar-mode -modi window,windowcd,run -show"
 
 for_window [class="TelegramDesktop"] floating enable
 for_window [window_role="About"]     floating enable
@@ -91,7 +91,7 @@ mode "$mode_floating" {
     bindsym $mod+$right resize grow   width  10 px or 5 ppt
 }
 
-# focus and move and swap
+# focus and move
 bindsym $mod+$left  focus left
 bindsym $mod+$down  focus down
 bindsym $mod+$up    focus up
