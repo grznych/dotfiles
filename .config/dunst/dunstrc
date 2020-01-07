@@ -1,49 +1,21 @@
 [global]
-    monitor              = 0
     follow               = mouse
     geometry             = "350x5-40+30"
-    indicate_hidden      = yes
-    shrink               = yes
-    transparency         = 0
-    notification_height  = 0
+    shrink               = true
     separator_height     = 1
     padding              = 8
     horizontal_padding   = 8
     frame_width          = 2
     separator_color      = frame
-    sort                 = yes
-    idle_threshold       = 0
     font                 = Ubuntu Mono 12
-    line_height          = 0
     markup               = full
-    format               = "<b>%s</b> %p\n%b"
-    alignment            = left
+    format               = "<b>%s</b>\n%b"
     show_age_threshold   = 60
-    word_wrap            = yes
-    ignore_newline       = no
-    stack_duplicates     = true
+    word_wrap            = true
     hide_duplicate_count = true
-    show_indicators      = yes
-    icon_position        = off
-    max_icon_size        = 0
-    icon_path            = /usr/share/icons/Adwaita/16x16/legacy/
-    sticky_history       = yes
-    history_length       = 20
-    dmenu                = /usr/bin/dmenu -p dunst:
-    browser              = /usr/bin/firefox -new-tab
-    always_run_script    = true
-    title                = Dunst
-    class                = Dunst
-    startup_notification = false
-    force_xinerama       = false
 
     mouse_middle_click   = close_all
     mouse_right_click    = do_action
-
-    #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
-
-[experimental]
-    per_monitor_dpi = false
 
 [shortcuts]
     close     = ctrl+space
