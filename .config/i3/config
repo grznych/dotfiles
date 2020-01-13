@@ -25,14 +25,14 @@ floating_modifier             $mod
 floating_maximum_size         1024 x 600
 
 # backlight and volume
-bindsym XF86MonBrightnessUp   exec --no-startup-id glight +10
 bindsym XF86MonBrightnessDown exec --no-startup-id glight -10
+bindsym XF86MonBrightnessUp   exec --no-startup-id glight +10
+bindsym XF86AudioPrev         exec --no-startup-id mpc prev
+bindsym XF86AudioPlay         exec --no-startup-id mpc toggle
+bindsym XF86AudioNext         exec --no-startup-id mpc next
 bindsym XF86AudioLowerVolume  exec --no-startup-id golume 4%-
 bindsym XF86AudioRaiseVolume  exec --no-startup-id golume 4%+
 bindsym XF86AudioMute         exec --no-startup-id golume toggle
-#bindsym XF86AudioNext        exec --no-startup-id playerctl next
-#bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
-#bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
 
 # apps and lock
 bindsym $mod+q      kill
@@ -41,6 +41,7 @@ bindsym $mod+F1     exec --no-startup-id    glock
 bindsym $mod+w      exec --no-startup-id    gmpv
 bindsym $mod+b      exec --no-startup-id    firefox
 bindsym $mod+n      exec --no-startup-id    urxvtc -e ranger
+bindsym $mod+m      exec --no-startup-id    urxvtc -e ncmpcpp
 bindsym $mod+h      exec --no-startup-id    urxvtc -e htop
 bindsym $mod+g      exec --no-startup-id    gedit
 bindsym $mod+a      exec --no-startup-id    genu ap
