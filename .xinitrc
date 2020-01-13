@@ -14,9 +14,10 @@ fi
 export CM_LAUNCHER=rofi
 PATH+=:$HOME/.local/bin
 
-{ ~/.fehbg; glock; } & xxkb & redshift & urxvtd -q -o -f & udiskie &
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+{ ~/.fehbg; glock; } & xxkb & redshift & urxvtd -q -o -f &
 
+#udiskie &
+#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 #xrandr --output HDMI-0 --left-of LVDS &
 #xrandr --output HDMI-0 --mode 1360x768 --same-as LVDS &
 
