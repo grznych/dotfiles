@@ -1,0 +1,5 @@
+configuration {
+    font:  "Ubuntu Mono 12";
+    dpi:   120;
+    theme: "gruvbox-dark-hard";
+}
