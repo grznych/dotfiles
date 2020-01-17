@@ -48,12 +48,11 @@ bindsym $mod+a      exec --no-startup-id    genu ap
 bindsym $mod+z      exec --no-startup-id    genu ex
 bindsym $mod+c      exec --no-startup-id    clipmenu && xdotool key ctrl+v
 bindsym $mod+v      exec --no-startup-id    clipdel -d .* && dunstify Clipdel!
-bindsym $mod+e      exec --no-startup-id    ~/.fehbg
+bindsym $mod+e      exec --no-startup-id    geh
 bindsym $mod+d      exec --no-startup-id    gtrans
 bindsym Print       exec --no-startup-id    gcrot
 bindsym $mod+Print  exec --no-startup-id    gcrot -s
 bindsym $mod+Return exec --no-startup-id    urxvtc
-bindsym $mod+Tab    exec --no-startup-id    "rofi -sidebar-mode -modi window,windowcd,run -show"
 
 for_window [class="TelegramDesktop"] floating enable
 for_window [window_role="About"]     floating enable

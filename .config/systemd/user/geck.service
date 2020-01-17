@@ -1,5 +1,5 @@
 [Unit]
-Description=Check updates pacman
+Description=Checking for pacman updates
 
 [Service]
 ExecStart=-%h/.local/bin/geck

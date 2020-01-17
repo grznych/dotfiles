@@ -2,4 +2,4 @@
 Description=Random wallpaper with feh
 
 [Service]
-ExecStart=%h/.fehbg
+ExecStart=%h/.local/bin/geh

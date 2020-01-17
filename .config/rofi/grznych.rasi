@@ -1,11 +1,10 @@
 * { background-color: #282828; border-color: #a89984; }
 window { border: 2; children: [ listview ]; }
-window, element { padding: 2; }
-element.normal, element.alternate, element.selected { text-color: #282828; }
-element.normal.normal, element.alternate.normal     { text-color: #ebdbb2; }
+window, element { padding: 2; text-color: #282828; }
+element.normal.normal, element.alternate.normal { text-color: #ebdbb2; }
 element.normal.urgent, element.alternate.urgent { background-color: #cc241d; }
 element.normal.active, element.alternate.active { background-color: #d79921; }
 element.selected.normal  { background-color: #665c54; text-color: #fbf1c7; }
-element.alternate.normal { background-color: #32302f; }
 element.selected.urgent  { background-color: #fb4934; }
 element.selected.active  { background-color: #fabd2f; }
+element.alternate.normal { background-color: #32302f; }
