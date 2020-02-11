@@ -1,7 +1,9 @@
 #!/bin/zsh
 TRAPUSR1() k=$((!k))
-i3status | while read l ; do
+i3status | while read l ; do t=#fabd2f
+    (( 9 < (h=`date +%-H`) && h < 23 )) && t=#b8bb26
+    (( 0 < h && h < 8 )) && t=#fb4934
     [[ ${${(A)r::=${(ps.\},.)l}}[4]} =~ 100.{3}$ ]] && r[4]=()
-    ((k)) || r[2,3]=() r[-1]=${r[-1]/\[*] /}
+    ((k)) || r[2,3]=() r[-1]=${${r[-1]/\[*] /}/\"/'"color":"'$t'","'}
     <<< ${(pj.\},.)r} || exit 1
 done

@@ -4,7 +4,7 @@ rt() {
     local u a s=() i=0 p=(-l $((#/3)))
     for t k c in $@ ; do
         eval $k[2]${k[2]:++=$i,} ; k[2]=$k[1]:u
-        (( 1 < (j=t[(i)[$k]]) && j <= #t )) && t[j]="<u>$t[j]</u>"
+        (( 1 < (j=t[(i)[$k]]) && j <= $#t )) && t[j]="<u>$t[j]</u>"
         s+=$t p+=(-kb-select-$((++i)) $k[1])
     done
     i=`$r $p ${u:+-u} $u ${a:+-a} $a <<< ${(F)s}` && eval $@[i*3] \&

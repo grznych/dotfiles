@@ -14,6 +14,25 @@ order += "battery all"
 order += "volume master"
 order += "time"
 
+wireless _first_ {
+    format_up   = "%essid ~%quality"
+    format_down = "ω"
+}
+
+disk "/" {
+    format         = "%used [%percentage_used]"
+    low_threshold  = 50
+    threshold_type = percentage_free
+    prefix_type    = decimal
+}
+
+disk "/home" {
+    format         = "%used [%percentage_used]"
+    low_threshold  = 25
+    threshold_type = percentage_free
+    prefix_type    = decimal
+}
+
 battery all {
     format                   = "%status[%percentage] %remaining"
     format_down              = "ω"
@@ -31,25 +50,6 @@ volume master {
     format_muted = "ω: [%volume]"
 }
 
-wireless _first_ {
-    format_up   = "%essid ~%quality"
-    format_down = "ω"
-}
-
 time {
-    format = "[%a: %d.%m.%Y] %H:%M:%S"
-}
-
-disk "/" {
-    format         = "%used [%percentage_used]"
-    low_threshold  = 50
-    threshold_type = percentage_free
-    prefix_type    = decimal
-}
-
-disk "/home" {
-    format         = "%used [%percentage_used]"
-    low_threshold  = 25
-    threshold_type = percentage_free
-    prefix_type    = decimal
+    format = "[%a: %d.%m.%Y] %T"
 }
