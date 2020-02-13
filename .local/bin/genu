@@ -12,8 +12,9 @@ rt() {
 
 #   title           key command
 ap=(Terminal        t   urxvtc
+    Calculator      c   galc
+    Calendar        l   galen
     TeXstudio       x   texstudio
-    Calculator      c   gnome-calculator
     Mathematica\ 11 mu  ~/.mathematica/Mathematica
     Other           oa  genu\ ot
     Internet        ia  genu\ it)
@@ -22,7 +23,7 @@ ot=(Disks           da  gnome-disks
     GParted         ga  gparted
     Baobab          b   baobab
     Evince          e   evince
-    Sims\ 4         iu  ~/Downloads/Sims_4_Linux/start.sh
+    Sims\ 4         iu  ~/.Downloads/Sims_4_Linux/start.sh
     Steam           s   steam)
 
 it=(Firefox         f   firefox\ --private-window
@@ -34,7 +35,7 @@ ex=(Shutdown        wu  systemctl\ poweroff
     Reboot          ru  systemctl\ reboot
     Suspend         sa  systemctl\ suspend
     Lock            l   glock
-    Reload\ i3      e   'i3-msg reload && dunstify i3:\ reload'
+    Reload\ i3      e   'i3-msg reload && dunstify i3:\ reload!'
     Restart\ i3     t   i3-msg\ restart
     Config\ i3      c   gedit\ ~/.config/i3/config)
 
