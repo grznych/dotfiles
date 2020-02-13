@@ -22,14 +22,12 @@ disk "/" {
     format         = "%used [%percentage_used]"
     low_threshold  = 50
     threshold_type = percentage_free
-    prefix_type    = decimal
 }
 
 disk "/home" {
     format         = "%used [%percentage_used]"
     low_threshold  = 25
     threshold_type = percentage_free
-    prefix_type    = decimal
 }
 
 battery all {

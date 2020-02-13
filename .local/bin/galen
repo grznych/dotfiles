@@ -5,7 +5,7 @@ gr() rofi -dmenu -markup-rows -l ${#${(f)1}} ${k:^b} <<< $1
 p=1 s='s:\x1b\[7m\(.*\)\x1b\[27m:<i><b><u>\1</u></b></i>:'
 d=(`date +%m\ %Y` -m --color=always) c=(\>1 \<12 12 1 -- ++)
 until gr "`cal $d | sed $s | awk NF`" > /dev/null ; do
-    (( (e=$((?-9))) == -8 )) && break
+    (( (e=?-9) == -8 )) && break
     [[ $e = [34] ]] && e=$((e-2)) p=2
     (( d[1] $c[e] || p == 2 )) || d[1]=$c[2+e] p=2
     (( d[$p] $c[4+e] )) ; p=1
