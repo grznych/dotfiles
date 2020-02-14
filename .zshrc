@@ -10,7 +10,7 @@ preexec() print -n "\e]0;$1\a"
 precmd() {
     print -Pn '\e]0;%~\a' ; vcs_info
     psvar[1,4]=(yellow magenta blue "${vcs_info_msg_0_#*:}")
-    local hs=`date +%-H` US=red U=yellow S=green
+    local hs=`date +%H` US=red U=yellow S=green
     (( 0 < $hs && $hs <  7 ))            && psvar[1]=red
     (( 9 < $hs && $hs < 22 ))            && psvar[1]=green
     [[ $PWD:A = $HOME* ]]                && psvar[2]=cyan

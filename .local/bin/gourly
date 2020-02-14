@@ -1,4 +1,4 @@
 #!/bin/sh
-(( 9 < (h=`date +%-H`) && h < 23 )) && t="-u low -t 1000"
-(( 0 < h && h < 8 )) && t="-u critical -t 10000"
+(( 9 < (h=`date +%H`) && h < 22 )) && t="-u low -t 1000"
+(( 0 < h && h < 7 )) && t="-u critical -t 10000"
 dunstify $t `date +%T`
