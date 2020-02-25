@@ -14,10 +14,8 @@ URxvt.scrollTtyKeypress: true
 URxvt.secondaryScroll:   false
 URxvt.iso14755:          false
 URxvt.iso14755_52:       false
-URxvt.keysym.S-C-V:      eval:paste_clipboard
-URxvt.keysym.S-C-C:      eval:selection_to_clipboard
-URxvt.keysym.C-M-c:      builtin-string:
-URxvt.keysym.C-M-v:      builtin-string:
+URxvt.keysym.S-Insert:   eval:paste_clipboard
+URxvt.keysym.C-Insert:   eval:selection_to_clipboard
 
 ! #282828 #32302f
 *background: #1d2021

@@ -19,4 +19,6 @@ xkb_symbols "ruf" {
     key <BKSL> { [], [       ellipsis,  underscore ] };
     key <AB10> { [], [    Cyrillic_io, Cyrillic_IO ] };
     key <RALT> {     [    Mode_switch, Mode_switch ] };
+    key <MENU> { [ Redirect(key=<INS>, mods=Control) ] };
+    key <RCTL> { [ Redirect(key=<INS>, mods=Shift  ) ] };
 };
