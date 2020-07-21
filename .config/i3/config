@@ -46,7 +46,7 @@ bindsym $mod+h      exec --no-startup-id    urxvtc -e htop
 bindsym $mod+g      exec --no-startup-id    gedit
 bindsym $mod+a      exec --no-startup-id    genu ap
 bindsym $mod+z      exec --no-startup-id    genu ex
-bindsym $mod+c      exec --no-startup-id    clipmenu && xdotool key ctrl+v
+bindsym $mod+c      exec --no-startup-id    clipmenu && xdotool key shift+Insert
 bindsym $mod+v      exec --no-startup-id    clipdel -d .* && dunstify Clipdel!
 bindsym $mod+e      exec --no-startup-id    geh
 bindsym $mod+d      exec --no-startup-id    gtrans

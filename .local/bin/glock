@@ -16,6 +16,6 @@ trap revert HUP INT TERM
     i3-msg -q bar mode invisible
 } &
 
-i3lock -mnueB=
+i3lock -nueB=
 
 revert

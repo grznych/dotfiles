@@ -15,3 +15,4 @@ setxkbmap ruf "" grp_led:caps -print | xkbcomp -I$HOME/.config/xkb - $DISPLAY &
 #xrandr --output HDMI-0 --mode 1360x768 --same-as LVDS &
 
 exec i3
+#exec bspwm
