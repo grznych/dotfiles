@@ -15,7 +15,7 @@ ap=(Terminal        t   urxvtc
     Calculator      c   galc
     Calendar        l   galen
     TeXstudio       x   texstudio
-    Mathematica\ 11 mu  ~/.mathematica/Mathematica
+    Mathematica\ 12 mu  ~/.Wolfram/Mathematica/Mathematica
     Other           oa  genu\ ot
     Internet        ia  genu\ it)
 
@@ -23,7 +23,6 @@ ot=(Disks           da  gnome-disks
     GParted         ga  gparted
     Baobab          b   baobab
     Evince          e   evince
-    Sims\ 4         iu  ~/.Downloads/Sims_4_Linux/start.sh
     Steam           s   steam)
 
 it=(Firefox         f   firefox\ --private-window
