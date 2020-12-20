@@ -25,9 +25,12 @@ floating_maximum_size         1024 x 600
 # backlight and volume
 bindsym XF86MonBrightnessDown exec --no-startup-id glight -10
 bindsym XF86MonBrightnessUp   exec --no-startup-id glight +10
-bindsym XF86AudioPrev         exec --no-startup-id mpc prev
-bindsym XF86AudioPlay         exec --no-startup-id mpc toggle
-bindsym XF86AudioNext         exec --no-startup-id mpc next
+#bindsym XF86AudioPrev         exec --no-startup-id mpc prev
+#bindsym XF86AudioPlay         exec --no-startup-id mpc toggle
+#bindsym XF86AudioNext         exec --no-startup-id mpc next
+bindsym XF86AudioPrev         exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay         exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext         exec --no-startup-id playerctl next
 bindsym XF86AudioLowerVolume  exec --no-startup-id golume 4%-
 bindsym XF86AudioRaiseVolume  exec --no-startup-id golume 4%+
 bindsym XF86AudioMute         exec --no-startup-id golume toggle
