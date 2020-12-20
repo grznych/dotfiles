@@ -1,2 +1,2 @@
 #!/bin/sh
-scrot $1 ~/.Pictures/%Y-%m-%d\ %H-%M.png -e 'dunstify -u low -r 300 "$n"'
+scrot $1 ~/.pictures/%Y-%m-%d\ %H-%M.png -e 'dunstify -u low -r 300 "$n"'
