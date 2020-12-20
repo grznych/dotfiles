@@ -23,11 +23,12 @@ ot=(Disks           da  gnome-disks
     GParted         ga  gparted
     Baobab          b   baobab
     Evince          e   evince
-    Steam           s   steam)
+    Steam           s   steam
+    Volume          v   pavucontrol)
 
 it=(Firefox         f   firefox\ --private-window
     Tor             t   tor-browser
-    Telegram        g   telegram-desktop
+    Telegram        g   QT_QPA_PLATFORMTHEME=gtk3\ telegram-desktop
     Transmission    r   transmission-gtk)
 
 ex=(Shutdown        wu  systemctl\ poweroff
