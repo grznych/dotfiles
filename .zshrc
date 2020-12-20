@@ -5,7 +5,7 @@ setopt -JN0 pushd_ignore_dups complete_in_word
 
 autoload -Uz vcs_info compinit && compinit
 
-preexec() print -n "\e]0;$1\a"
+preexec() printf "\e]0;%s\a" $1
 
 precmd() {
     print -Pn '\e]0;%~\a' ; vcs_info
@@ -39,8 +39,6 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export SYSTEMD_LESS=FRXMK
 
 eval `dircolors`
-
-bindkey -v
 
 zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' rehash true
